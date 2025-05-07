@@ -1,0 +1,86 @@
+/*FORMULARIO INICIO SESION*/
+body {
+    background-image: url("imagenes/fondosesiones.png");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    height: 100vh;
+}
+
+#TusMuelas{
+    color: black;
+}
+
+.formulario{
+    background-color: rgba(255, 255, 255, 0.759);
+    color: #3a3e79;
+    
+    font-family: 'Comfortaa';
+
+    padding: 90px;
+    min-width: 10%;
+    width: 30%;
+    border-radius: 20px;
+
+    h1{
+        margin-bottom: 50px;
+        text-align: center;
+    }
+}
+
+/*edicion del boton de enviar*/
+.boton1 {
+    margin-top: 50px;
+    width: 96%;
+    height: 40px;
+    font-size: 20px;
+    min-width: 50px;
+
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Comfortaa';
+    color: #ffffff;
+
+    background-color: #3a3e7956;
+    border: none;
+    border-radius: 50px;
+
+    cursor: pointer;  
+}
+/*transicion del boton*/
+.boton1:hover {
+    color: #3a3e79;
+}
+/*edicion de los cuadrados para poner informacion de cuenta*/
+.cuadrados{
+    width: 96%;  
+    min-width: 50px;
+    height: 30px;
+    
+    font-family: 'Comfortaa';
+    
+    background-color: #3a3e7956;
+    border: none;
+    border-radius: 50px;
+  
+}
+
+a{
+    text-decoration: none;
+}
+
+img {
+    width: 100px;
+    position: absolute;
+    left: 10px;
+    top: 10px;   
+}

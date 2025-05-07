@@ -1,0 +1,23 @@
+body{
+    background-color: blue;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#titulo{
+    width: 50%;
+    height: 60px;
+    min-width: 417px;
+
+    background-color: white;
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Comfortaa';
+}
+
