@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Matatena - Cult of the Lamb</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+    }
+    .tablero {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 5px;
+      margin: 20px auto;
+      width: max-content;
+    }
+    .celda {
+      border: 2px solid #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      background-color: #f0f0f0;
+    }
+    .dado {
+      font-size: 40px;
+      margin-top: 20px;
+    }
+    .botones {
+      margin-top: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🎲 Matatena - Cult of the Lamb (Versión Simple)</h2>
+
+<div id="dado" class="dado">🎲</div>
+<div class="botones">
+  <button onclick="tirarDado()">Tirar Dado</button>
+  <button onclick="ponerDado(0)">Columna 1</button>
+  <button onclick="ponerDado(1)">Columna 2</button>
+  <button onclick="ponerDado(2)">Columna 3</button>
+</div>
+
+<div id="tablero" class="tablero"></div>
+<h3 id="puntos">Puntos: 0</h3>
+
+<script>
+  const tablero = [
+    [], [], [] // 3 columnas vacías
+  ];
+  const tableroHTML = document.getElementById('tablero');
+  const dadoHTML = document.getElementById('dado');
+  const puntosHTML = document.getElementById('puntos');
+
+  let dadoActual = 0;
+
+  function tirarDado() {
+    dadoActual = Math.floor(Math.random() * 6) + 1;
+    dadoHTML.textContent = '🎲 ' + dadoActual;
+  }
+
+  function ponerDado(columna) {
+    if (dadoActual === 0) {
+      alert("Tira el dado primero.");
+      return;
+    }
+
+    if (tablero[columna].length >= 3) {
+      alert("Esta columna está llena.");
+      return;
+    }
+
+    tablero[columna].push(dadoActual);
+    dadoActual = 0;
+    dadoHTML.textContent = '🎲';
+
+    renderizarTablero();
+    calcularPuntaje();
+  }
+
+  function renderizarTablero() {
+    tableroHTML.innerHTML = '';
+    for (let fila = 2; fila >= 0; fila--) {
+      for (let col = 0; col < 3; col++) {
+        const celda = document.createElement('div');
+        celda.className = 'celda';
+        celda.textContent = tablero[col][fila] || '';
+        tableroHTML.appendChild(celda);
+      }
+    }
+  }
+
+  function calcularPuntaje() {
+    let total = 0;
+
+    for (let col = 0; col < 3; col++) {
+      const valores = tablero[col];
+      const conteo = {};
+
+      for (let valor of valores) {
+        conteo[valor] = (conteo[valor] || 0) + 1;
+      }
+
+      for (let valor in conteo) {
+        total += valor * conteo[valor] * conteo[valor]; // multiplicación
+      }
+    }
+
+    puntosHTML.textContent = 'Puntos: ' + total;
+  }
+</script>
+
+</body>
+</html>

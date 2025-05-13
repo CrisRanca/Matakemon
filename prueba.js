@@ -44,8 +44,6 @@ fila1.addEventListener("click", function() {
     contenedorImagen.style.backgroundImage=("")
 })
 
-let arrayAux;
-
 
 
 fila2.addEventListener("click", function() {
