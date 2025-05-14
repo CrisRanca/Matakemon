@@ -3,7 +3,11 @@ body{
     background-color: brown;
 }
 
-#resultado{
+p{
+
+}
+
+#lanzarDado{
     height: 300px;
     width: 300px;
     background-size: contain;
