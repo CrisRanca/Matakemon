@@ -1,0 +1,27 @@
+body{
+    height: 90vh;
+
+    background-color: aqua;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Comfortaa";
+}
+
+.campo{
+    width: 80%;
+    height: 75%;
+    
+    padding: 2%;
+
+    border: 5px solid white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,26 +1,25 @@
 body{
+    background-image: url("imagenes/qSR.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     display: flex;
-    background-color: brown;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    height: 100vh;
 }
-
-p{
-
-}
-
+/*Div para la casilla de lanzar dado*/
 #lanzarDado{
-    height: 300px;
-    width: 300px;
+    height: 50px;
+    width: 50px;
     background-size: contain;
+    
     border: 2px solid wheat;
-}
-
-#resultado2{
-    height: 300px;
-    width: 300px;
-    background-size: contain;
-    border: 2px solid wheat;
-    position: absolute;
-    right: 500px;
 }
 
 .fila {
@@ -36,13 +35,13 @@ p{
     border: 2px solid #000;
     font-weight: bold;
     background-size: contain;
-    height: 200px;
-    width: 200px;
+    height: 50px;
+    width: 50px;
 }
 
-#zona1{}
+#campoJugador1{}
 
-#puntuacion{
+.puntuacion{
     height: 50px;
     width: 50px;
     border: 2px solid wheat;
@@ -77,6 +76,77 @@ p{
     border: 2px solid wheat;
     position: absolute;
     left: 1300px;
+    top: 800px;
+
+    p{
+        text-align: center;
+        color: white;
+    }
+}
+
+
+
+
+
+
+
+/*JUGADOR 2*/
+/*Div para la casilla de lanzar dado*/
+
+.fila_jugador2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    gap: 10px;
+    padding: 20px;
+}
+
+.fila_jugador2 div {
+    padding: 40px;
+    text-align: center;
+    border: 2px solid #000;
+    font-weight: bold;
+    background-size: contain;
+    height: 200px;
+    width: 200px;
+}
+
+#campoJugador2{}
+
+.puntuacion_jugador2{
+    height: 50px;
+    width: 50px;
+    border: 2px solid wheat;
+    position: absolute;
+    left: 500px;
+    top: 100px;
+
+    p{
+        text-align: center;
+        color: white;
+    }
+    
+}
+
+.puntuacion2_jugador2{
+    height: 50px;
+    width: 50px;
+    border: 2px solid wheat;
+    position: absolute;
+    left: 500px;
+    top: 450px;
+
+    p{
+        text-align: center;
+        color: white;
+    }
+}
+
+.puntuacion3_jugador2{
+    height: 50px;
+    width: 50px;
+    border: 2px solid wheat;
+    position: absolute;
+    left: 500px;
     top: 800px;
 
     p{

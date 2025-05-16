@@ -10,15 +10,6 @@ body{
     border: 2px solid wheat;
 }
 
-#resultado2{
-    height: 300px;
-    width: 300px;
-    background-size: contain;
-    border: 2px solid wheat;
-    position: absolute;
-    right: 500px;
-}
-
 .fila {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
