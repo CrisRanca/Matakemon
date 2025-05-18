@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="dadosTabla.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Indie+Flower&display=swap" rel="stylesheet">
+
+</head>
+    <style>
+  html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+
+      background-color: black;
+    }
+
+    /* Imagen centrada con tamaño fijo */
+    .fondo {
+        z-index: 1;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: blueviolet;
+        min-width: 1126px;
+        min-height: 631px;
+     
+    }                   
+
+    /* Tabla encima */
+    .tabla {
+        position: relative;
+        z-index: 2;
+        width: 100vw;
+        height: 100vh;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    td {
+      border: 2px solid red;
+    }
+
+    .Fila1{
+        background-color: black;
+        border: 2px solid wheat;
+        background-size: cover;
+    }
+
+    .Fila2{
+        background-color: black;
+        border: 2px solid wheat;
+        background-size: cover;
+    }
+
+    .Fila3{
+        background-color: black;
+        border: 2px solid wheat;
+        background-size: cover;
+    }
+
+    #lanzarDado{
+        background-size: contain;
+        border: 2px solid wheat;
+    }
+
+
+  </style>
+<body>
+    <div >
+        <img class="fondo" src="./imagenes/fondo2.png">
+    </div>
+  <table class="tabla">
+    <tbody>
+      <!-- 10 filas -->
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <div class="fila1">
+            <td class="Fla1"></td>
+            <td class="Fla1"></td>
+            <td class="Fla1"></td>
+        </div>
+        <td></td>
+        <td></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <div id="fila2" class="fila">
+            <td class="Fila2"></td>
+            <td class="Fila2"></td>
+            <td class="Fila2"></td>
+        </div>
+        <td></td>
+        <td id="lanzarDado"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr>
+        <td></td>
+        <td></td>
+        <div id="fila3" class="fila">
+            <td class="Fila3"></td>
+            <td class="Fila3"></td>
+            <td class="Fila3"></td>
+        </div>
+        <td></td>
+        <td></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+
+
+  
+    <div class="puntuacion"><!--div para la puntuacion de la fila 1 del jugador 1-->
+        <p id="puntuacion_1">0</p>
+    </div>
+
+    <div class="puntuacion2"><!--div para la puntuacion de la fila 2 del jugador 1-->
+        <p id="puntuacion_2">0</p>
+    </div> 
+
+    <div class="puntuacion3"><!--div para la puntuacion de la fila 3 del jugador 1-->
+        <p id="puntuacion_3">0</p>
+    </div>
+</body>
+</html>
