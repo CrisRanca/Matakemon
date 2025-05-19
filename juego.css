@@ -1,0 +1,344 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+
+    overflow: hidden;
+
+    font-family: 'Comfortaa';
+}
+
+/*IMAGEN DE FONDO*/
+.fondo {
+    z-index: 0;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;    
+}      
+
+/*LANZAR DADO*/
+#lanzarDado{
+    background-size: contain;
+
+    position: absolute;
+    top:44%;
+    left:47%;
+    z-index: 5;
+    width: 120px;
+    height: 120px;
+}
+
+
+/*CAMPOS DE AMBOS JUGADORES*/
+#campoJugador1{ 
+    position: absolute;
+    left: 15%;
+    top:28%;
+}
+
+#campoJugador2{
+    position: absolute;    
+    right: 15%;
+    top:28%;
+}
+
+.fila, .fila_jugador2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    gap: 2px;
+    margin: 2px;
+}
+
+.fila div, .fila_jugador2 div {
+    border: 2px solid #ffffff;
+    border-radius: 5%;
+    background-size: contain;
+
+    padding: 40px;
+    height: 50px;
+    width: 50px;
+}
+
+/*CIRCULOS PARA CADA USUARIO*/
+#circulo_jugador1{
+    position: absolute;
+    background: rgb(255, 255, 255);
+    border-radius: 50%;
+    width: 170px;
+    height: 170px;
+    top:3%;
+    left:5%;
+}
+
+#circulo_jugador2{
+    position: absolute;
+    background: rgb(255, 255, 255);
+    border-radius: 50%;
+    width: 170px;
+    height: 170px;
+    top:3%;
+    right:5%;
+}
+
+/*FOTO DE USUARIO DE CADA JUGADOR*/
+#fotoUser1{
+    position: absolute;
+    background: rgb(129, 167, 218);
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    top:4%;
+    left:5.5%;
+}
+
+#fotoUser2{
+    background: rgb(218, 194, 129);
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+   
+    position: absolute;
+    top:4%;
+    right:5.5%; 
+
+   
+}
+
+#fotoJ2{
+    width: 80%;
+    
+    position: absolute;
+    top:8%;
+    right:8%;
+}
+
+
+/*PUNTUACIONES*/
+/*untuaciones totales*/
+.puntuacionTotal_j1{
+    width: 170px;
+    height: 30px;
+
+    position: absolute;
+    right: 64%;
+    top:73%;
+
+    border-radius: 50px;
+
+    background-color: white;   
+}
+
+#totalJ1,#totalJ2{
+    text-align: center;
+    margin-top: 6px;
+}
+
+.puntuacionTotal_j2{
+    width: 170px;
+    height: 30px;
+
+    position: absolute;
+    left: 64%;
+    top:73%;
+
+    border-radius: 50px;
+
+    background-color: white;   
+}
+
+/*Puntuaciones individuales (div)*/
+/*jugador 1*/
+.puntuacion {
+    width: 30px;
+    height: 173px;
+
+    position: absolute;
+    left: 37.3%;
+    top:28%;
+
+    border-radius: 50px;
+
+    background-color: white;
+}
+.puntuacion2 {
+    width: 30px;
+    height: 173px;
+
+    position: absolute;
+    left: 37.3%;
+    top:43%;
+
+    border-radius: 50px;
+
+    background-color: white;
+}
+.puntuacion3 {
+    width: 30px;
+    height: 173px;
+
+    position: absolute;
+    left: 37.3%;
+    top:53%;
+
+    border-radius: 50px;
+
+    background-color: white;
+}
+
+/*jugador 2*/
+.puntuacion_jugador2 {
+    width: 30px;
+    height: 173px;
+
+    position: absolute;
+    right: 37.3%;
+    top:28%;
+
+    border-radius: 50px;
+
+    background-color: white;
+}
+.puntuacion2_jugador2 {
+    width: 30px;
+    height: 173px;
+
+    position: absolute;
+    right: 37.3%;
+    top:43%;
+
+    border-radius: 50px;
+
+    background-color: white;
+}
+.puntuacion3_jugador2 {
+    width: 30px;
+    height: 173px;
+
+    position: absolute;
+    right: 37.3%;
+    top:53%;
+
+    border-radius: 50px;
+
+    background-color: white;
+}
+
+/*puntuaciones individuales (texto)*/
+#puntuacion_1, #puntuacion_1_jugador2{
+    text-align: center;
+    margin-top: 55px;
+    font-size: large;
+}
+#puntuacion_2, #puntuacion_2_jugador2{
+    text-align: center;
+    margin-top: 50px;
+    font-size: large;
+}
+#puntuacion_3, #puntuacion_3_jugador2{
+    text-align: center;
+    margin-top: 90px;
+    font-size: large;
+}
+
+
+/*POKEMONS DE LOS JUGADORES*/
+#pokemonJ1{
+    z-index:7;
+    width: 150px;
+
+    position: absolute;
+    left: 1%;
+    top:45%;
+}
+
+#pokemonJ2{
+    z-index:7;
+    width: 150px;
+
+    position: absolute;
+    right: 1.5%;
+    top:45%;
+}
+
+
+
+
+/*NOMBRE DE USUARIO DE LOS JUGADORES*/
+/*jugador 1*/
+.user1{
+    width: 200px;
+    height: 30px;
+
+    position: absolute;
+    left: 300px;
+    top:10%;
+
+    border-radius: 50px;
+
+    background-color: white;
+
+    p{
+        text-align: center;
+        margin-top: 6px;
+    }
+}
+
+/*jugador 2*/
+.user2{
+    width: 173px;
+    height: 30px;
+
+    position: absolute;
+    right: 300px;
+    top:10%;
+
+    border-radius: 50px;
+
+    background-color: white;
+
+    p{
+        text-align: center;
+        margin-top: 6px;
+    }
+}
+
+
+/*NIVEL DE LOS JUGADORES*/
+/*jugador 1*/
+.nivelJ1{
+    width: 145px;
+    height: 30px;
+
+    position: absolute;
+    left: 290px;
+    top:15%;
+
+    border-radius: 50px;
+
+    background-color: white;
+
+    p{
+        text-align: center;
+        margin-top: 6px;
+    }
+}
+
+/*jugador 2*/
+.nivelJ2{
+    width: 145px;
+    height: 30px;
+
+    position: absolute;
+    right: 290px;
+    top:15%;
+
+    border-radius: 50px;
+
+    background-color: white;
+
+    p{
+        text-align: center;
+        margin-top: 6px;
+    }
+}
