@@ -1,5 +1,5 @@
 body{
-    background-image: url("imagenes/fondoDificultad.png");
+    background-image: url("imagenes/fondoPokemons.png");
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -28,6 +28,7 @@ body{
 
     font-family: 'Comfortaa';
     font-size: 20px;
+    color: #2c2c2c;
 }
 
 .logotitulo{
@@ -79,7 +80,7 @@ body{
 .personajes{
     background-color: white;
     border-radius: 40px;
-    width: 1400px;
+    width: 1300px;
     height: 650px;
     margin-top: 200px;
 
@@ -89,9 +90,34 @@ body{
 .de4{
     display: flex;
     flex-direction: row;
-    justify-content:space-around;
-    margin-top: 70px;
-    margin-bottom: 100px;
+    justify-content:space-evenly;
+    margin-top: 65px;
+}
+
+#Pokemon5{
+    border: 2px solid #7a8e98;
+    border-radius: 5%;
+
+    width: 225px;
+    height: 225px;
+
+    img{
+        width: 135px;
+        position: relative;
+        top:30px;
+        left: 45px;
+    }    
+    
+    p{
+        color:#7a8e98;
+        border-top: 2px solid #7a8e98;
+
+        padding: 10px;
+        text-align: center; 
+
+        position: relative;
+        top:45px;
+    }
 }
 
 #Pokemon1{
@@ -141,7 +167,6 @@ body{
 
         position: relative;
         top:60px;
-        
     }
 }
 
@@ -170,7 +195,133 @@ body{
     }
 }
 
+#Pokemon4{
+    border: 2px solid #eed592;
+    border-radius: 5%;
 
-#nombrePokemon1, #nombrePokemon2, #nombrePokemon3, #nombrePokemon4{
+    width: 225px;
+    height: 225px;
+
+    img{
+        width: 135px;
+        position: relative;
+        top:30px;
+        left: 55px;
+    }    
+    
+    p{
+        color:#eed592;
+        border-top: 2px solid #eed592;
+        padding: 10px;
+        text-align: center; 
+
+        position: relative;
+        top:53px;
+    }
+}
+
+#Pokemon5{
+    border: 2px solid #7a8e98;
+    border-radius: 5%;
+
+    width: 225px;
+    height: 225px;
+
+    img{
+        width: 135px;
+        position: relative;
+        top:30px;
+        left: 45px;
+    }    
+    
+    p{
+        color:#7a8e98;
+        border-top: 2px solid #7a8e98;
+
+        padding: 10px;
+        text-align: center; 
+
+        position: relative;
+        top:45px;
+    }
+}
+
+#Pokemon6{
+    border: 2px solid #987d9b;
+    border-radius: 5%;
+
+    width: 225px;
+    height: 225px;
+
+    img{
+        width: 135px;
+        position: relative;
+        top:30px;
+        left: 45px;
+    }    
+    
+    p{
+        color:#987d9b;
+        border-top: 2px solid #987d9b;
+        padding: 10px;
+        text-align: center; 
+
+        position: relative;
+        top:50px;
+    }
+}
+
+#Pokemon7{
+    border: 2px solid #9f9b99;
+    border-radius: 5%;
+
+    width: 225px;
+    height: 225px;
+
+    img{
+        width: 135px;
+        position: relative;
+        top:30px;
+        left: 40px;
+    }    
+    
+    p{
+        color:#9f9b99;
+        border-top: 2px solid #9f9b99;
+        padding: 10px;
+        text-align: center; 
+
+        position: relative;
+        top:53px;
+    }
+}
+
+#Pokemon8{
+    border: 2px solid #a16181;
+    border-radius: 5%;
+
+    width: 225px;
+    height: 225px;
+
+    img{
+        width: 100px;
+        position: relative;
+        top:30px;
+        left: 65px;
+    }    
+    
+    p{
+        color:#a16181;
+        border-top: 2px solid #a16181;
+        padding: 10px;
+        text-align: center; 
+
+        position: relative;
+        top:58px;
+    }
+}
+
+#nombrePokemon1, #nombrePokemon2, #nombrePokemon3, #nombrePokemon4,
+#nombrePokemon5, #nombrePokemon6, #nombrePokemon7, #nombrePokemon8 {
     margin: 0px;
 }

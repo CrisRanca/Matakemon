@@ -10,7 +10,7 @@ html, body {
 }
 
 /*IMAGEN DE FONDO*/
-.fondo {
+#fondo {
     z-index: 0;
     position: absolute;
     width: 100vw;
@@ -84,7 +84,7 @@ html, body {
 /*FOTO DE USUARIO DE CADA JUGADOR*/
 #fotoUser1{
     position: absolute;
-    background: rgb(129, 167, 218);
+    background: rgb(160, 160, 160);
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -93,7 +93,7 @@ html, body {
 }
 
 #fotoUser2{
-    background: rgb(218, 194, 129);
+    background: rgb(160, 160, 160);
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -245,20 +245,20 @@ html, body {
 /*POKEMONS DE LOS JUGADORES*/
 #pokemonJ1{
     z-index:7;
-    width: 150px;
+    width: 115px;
 
     position: absolute;
-    left: 1%;
-    top:45%;
+    left: 2%;
+    top:410px;
 }
 
 #pokemonJ2{
     z-index:7;
-    width: 150px;
+    width: 115px;
 
     position: absolute;
-    right: 1.5%;
-    top:45%;
+    right: 2%;
+    top:410px;
 }
 
 
