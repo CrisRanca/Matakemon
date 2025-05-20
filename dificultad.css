@@ -1,106 +1,112 @@
-body{
-    background-image: url("imagenes/fondoDificultad.png");
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+body {
+  background-image: url("imagenes/fondoDificultad.png");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#titulo{
-    width: 40%;
-    height: 70px;
-    min-width: 417px;
+#titulo {
+  width: 40%;
+  height: 70px;
+  min-width: 417px;
 
-    background-color: white;
-    border-radius: 20px;
+  background-color: white;
+  border-radius: 20px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    font-family: 'Comfortaa';
-    font-size: 20px;
-}
-
-.logotitulo{
-    width: 7%;
-}
-@keyframes spin { 
-    100% { 
-        -webkit-transform: rotate(360deg); 
-        transform:rotate(360deg); 
-    } 
+  font-family: "Comfortaa";
+  font-size: 20px;
 }
 
-@keyframes spin2 { 
-    100% { 
-        -webkit-transform: rotate(-360deg); 
-        transform:rotate(-360deg); 
-    } 
+.logotitulo {
+  width: 7%;
 }
-#cabecera img:nth-child(1){
-    animation:spin 2s linear infinite;
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
-#cabecera img:nth-child(3){
-    animation: spin2 2s linear infinite;
+@keyframes spin2 {
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
 }
-#icono img{
-    width: 100px;
-    position: absolute;
-    left: 10px;
-    top: 10px;   
+#cabecera img:nth-child(1) {
+  animation: spin 2s linear infinite;
 }
-#cabecera{
-    display: flex;
-    flex-direction: row;
-    place-content: center;
-    position: absolute;
-    top: 5%;
-    align-items: center;
+
+#cabecera img:nth-child(3) {
+  animation: spin2 2s linear infinite;
+}
+#icono img {
+  width: 100px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+#cabecera {
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+  position: absolute;
+  top: 5%;
+  align-items: center;
 }
 
 .lateral {
-    background-color: white;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 30px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 30px;
 }
 .lateral .perfil {
-  margin-top: 100px; 
+  height: fit-content;
+  margin-top: 100px;
   width: fit-content;
- overflow: hidden;
 }
 .lateral .perfil .perfil-fondo {
   width: 200px;
   height: 200px;
-  background-color: rgb(0, 132, 255);
+  background-color: rgb(0, 110, 255);
   border-radius: 5px;
   transition: all 0.5s;
-  transform-origin: bottom; 
-  
+  transform-origin: bottom;
 }
 .lateral .perfil .perfil-imagen {
   width: 200px;
-  height: 200px;
-  background-position: bottom;
-  background-size: cover;
+  height: 150px;
+  background-position: top;
+  background-size: 200px auto;
+  background-repeat: no-repeat;
   background-image: url("imagenes/entrenador1.png");
   position: absolute;
-  transform: translateY(-200px);
+  transform: translateY(-150px);
   z-index: 0;
   transition: all 0.5s;
-  
- 
+}
+.lateral .perfil-texto {
+  text-align: center;
+  opacity: 0;
+}
+.lateral .perfil:hover .perfil-texto {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 .lateral .perfil:hover .perfil-fondo {
   transform: perspective(500px) rotateX(60deg);
 }
 .lateral .perfil:hover .perfil-imagen {
-  transform: translateY(-300px);
-  height: 300px;
+  transform: translateY(-200px);
+  height: 200px;
 }

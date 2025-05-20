@@ -117,7 +117,7 @@ fila1_id.addEventListener("click", function () {
     resultadofinal();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 1 jugador 1 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = false;
   cambiarColorCirculo();
@@ -153,7 +153,7 @@ fila2_id.addEventListener("click", function () {
     resultadofinal();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 2 jugador 1 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = false;
   cambiarColorCirculo();
@@ -190,7 +190,7 @@ fila3_id.addEventListener("click", function () {
     resultadofinal();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 3 jugador 1 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = false;
   cambiarColorCirculo();
@@ -285,7 +285,7 @@ fila1_jugador2.addEventListener("click", function () {
     resultadofinal_jugador2();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 1 jugador 2 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = true;
   cambiarColorCirculo();
@@ -321,7 +321,7 @@ fila2_jugador2.addEventListener("click", function () {
     resultadofinal_jugador2();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 2 jugador 2 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = true;
   cambiarColorCirculo();
@@ -358,79 +358,25 @@ fila3_jugador2.addEventListener("click", function () {
     resultadofinal_jugador2();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 3 jugador 2 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = true;
   cambiarColorCirculo();
   eliminarDado(array3, array3_jugador2, fila_3);
 });
 
-//CAMBIAR LOS FONDOS SEGUN EL POKEMON
-let poke1 = localStorage.getItem("PokemonJ1");
-let poke2 = localStorage.getItem("PokemonJ2");
-let poke3 = localStorage.getItem("PokemonJ3");
-let poke4 = localStorage.getItem("PokemonJ4");
-let poke5 = localStorage.getItem("PokemonJ5");
-let poke6 = localStorage.getItem("PokemonJ6");
-let poke7 = localStorage.getItem("PokemonJ7");
-let poke8 = localStorage.getItem("PokemonJ8");
 
-//cambiar fondo dependiendo del pokemon por localStorage
-if (poke1 == "P1") {
-  if(poke1=="P1"){
-    cambiarFondo("./imagenes/FondoP2.png");
-  }else if (poke2 == "P2") {
-    cambiarFondo("./imagenes/FondoP2.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("./imagenes/FondoP3.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("./imagenes/FondoP4.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("./imagenes/FondoP5.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("./imagenes/FondoP6.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("./imagenes/FondoP7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("/imagenes/FondoP8.png");
-  }
-}else if(poke2 == "P2"){
-  if(poke1=="P1"){
-    cambiarFondo("./imagenes/FondoP2.png");
-  }else if (poke2 == "P2") {
-    cambiarFondo("./imagenes/FondoP2.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("./imagenes/FondoP3.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("./imagenes/FondoP4.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("./imagenes/FondoP5.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("./imagenes/FondoP6.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("./imagenes/FondoP7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("/imagenes/FondoP8.png");
-  }
-}else if(poke3 == "P3"){
-  if(poke1=="P1"){
-    cambiarFondo("./imagenes/FondoP2.png");
-  }else if (poke2 == "P2") {
-    cambiarFondo("./imagenes/FondoP2.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("./imagenes/FondoP3.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("./imagenes/FondoP4.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("./imagenes/FondoP5.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("./imagenes/FondoP6.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("./imagenes/FondoP7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("/imagenes/FondoP8.png");
-  }
-}
+// let poke1 = localStorage.getItem("PokemonJ1");
+// let poke2 = localStorage.getItem("PokemonJ2");
+// //cambiar fondo dependiendo del pokemon por localStorage
+// if (poke1 == "charmander") {
+//   if (poke2 == "bulbasaur") {
+//     cambiarFondo("/imagenes/rayo.gif");
+//   }
+//   if (poke2 == "squirtle") {
+//     cambiarFondo("/imagenes/fondoAgua.png");
+//   }
+// }
 
 
 
@@ -449,25 +395,59 @@ function cambiarColorCirculo() {
   }
 }
 
-//Inicializamos el color del circulo
-cambiarColorCirculo();
-
-
-
-// Cambiar el fondo de la página dependiendo del pokemon
-function cambiarFondo(url) {
-  document.body.style.backgroundImage = "url('" + url + "')";
-  document.body.style.backgroundRepeat = "no-repeat";
-  document.body.style.backgroundSize = "100% 100%";
-  document.body.style.backgroundPosition = "center";
-}
+// // Cambiar el fondo de la página dependiendo del pokemon
+// function cambiarFondo(url) {
+//   document.body.style.backgroundImage = "url('" + url + "')";
+//   document.body.style.backgroundRepeat = "no-repeat";
+//   document.body.style.backgroundSize = "100% 100%";
+//   document.body.style.backgroundPosition = "center";
+// }
 
 //esta puta mierda no va
-function eliminarDado(dadosAEliminar, dadosActivos, fila) {
-  for (let i = dadosActivos.length - 1; i >= 0; i--) {
-    if (dadosAEliminar.includes(dadosActivos[i])) {
-      dadosActivos.splice(i, 1);
-      fila[i].style.backgroundImage = "";
-    }
-  }
-}
+
+// function eliminarDado(dadosAEliminar, dadosActivos, fila) {
+//   for (let i =0; i < dadosActivos.length; i++) {
+
+//     if (dadosAEliminar.includes(dadosActivos[i])) {
+//       for (let j = 0; j < dadosActivos.length; j++) {
+//       let num = array[j];
+//       let veces = 0;
+
+//     //contamos cuántas veces aparece el número en el array
+//         for (let k = 0; k < dadosActivos.length; k++) {
+//           if (array[k] === num) {
+//            veces++;
+//           }
+//         }
+//       }
+//       for(let w=0; w>veces;w++){
+//         dadosActivos.splice(i, 1);
+//         fila.splice(i, 1);
+//         fila[i].style.backgroundImage = "";
+//       }
+//     }
+//   }
+// }
+// function eliminarDado(dadosAEliminar, dadosActivos, fila) {
+//   for (let i = dadosActivos.length - 1; i >= 0; i--) {
+//     if (dadosAEliminar.includes(dadosActivos[i])) {
+//       dadosActivos.splice(i, 1);        // Eliminar número del array
+//       fila.splice(i, 1);                // Eliminar caja correspondiente
+//     }
+//   }
+
+//   // Reorganizar imágenes: borrar todo y volver a colocar
+//   for (let i = 0; i < 3; i++) {
+//     if (fila[i]) {
+//       fila[i].style.backgroundImage = "";
+//     }
+//   }
+
+//   for (let i = 0; i < dadosActivos.length; i++) {
+//     // Coloca las imágenes desde la izquierda con los nuevos valores
+//     fila[i].style.backgroundImage = `url('img/${dadosActivos[i]}.png')`; // Ajusta esta ruta según tu proyecto
+//   }
+// }
+
+//Inicializamos el color del circulo
+cambiarColorCirculo();
