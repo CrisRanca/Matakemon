@@ -395,12 +395,9 @@ if (poke1 == "P1") {
   }else{
     cambiarFondo("imagenes/FondoP1.png");
   }
-
-
-
 }else if(poke2=="P2"){
-  if (poke2 == "P2") {
-    cambiarFondo("imagenes/FondoP2.png");
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1.png");
   }else if (poke3 == "P3") {
     cambiarFondo("imagenes/FondoP3.png");
   }else if (poke4 == "P4") {
@@ -416,7 +413,116 @@ if (poke1 == "P1") {
   }else{
     cambiarFondo("imagenes/FondoP2.png");
   }
+}else if(poke3=="P3"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP3.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP4.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP3.png");
+  }
+}else if(poke4=="P4"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP3.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP4.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP4.png");
+  }
+}else if(poke5=="P5"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP3.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP4.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP5.png");
+  }
+}else if(poke6=="P6"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP3.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP4.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP5.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP5.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP6.png");
+  }
+}else if(poke7=="P7"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP3.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP4.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP5.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP6.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP7.png");
+  }
+}else if(poke8=="P8"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP3.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP4.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP5.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP7.png");
+  }else{
+    cambiarFondo("imagenes/FondoP8.png");
+  }
 }
+
 
 
 
