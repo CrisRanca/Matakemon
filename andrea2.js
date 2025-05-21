@@ -1,6 +1,6 @@
 //---JUGADOR 1--
 //VARIABLES
-//turno booleano
+//turno
 let turnoJugador = Math.random() < 0.5;
 //Variable auxiliar para el dado obtenido
 let aux;
@@ -41,9 +41,9 @@ function tirarDado() {
   valorDado = Math.floor(Math.random() * 6) + 1;
 
   //aux para la imagen del dado
-  aux = `url(imagenes/dice${valorDado}.png)`;
+  aux = `url(dados/dice${valorDado}.png)`;
   //imagen del dado en la casilla de lanzar dado
-  contenedorImagen.style.backgroundImage = `url(imagenes/dice${valorDado}.png)`;
+  contenedorImagen.style.backgroundImage = `url(dados/dice${valorDado}.png)`;
 
   dadoTirado = true;
 }
@@ -108,20 +108,23 @@ fila1_id.addEventListener("click", function () {
         break;
       }
     }
-
+    //FUNCION DE ELIMINAR EL VALOR REPETIDO CON LA FILA DE ENFRENTE SI SE PONE UN NUMERO COINCIDENTE
+    eliminarDado(array1_jugador2, array1, fila_1_jugador2);
     //calcular el total de la puntuacion de la fila 1
     total = calcularPuntuacion(array1);
     //mostrar la puntuacion de la fila 1
     puntuacion1.innerHTML = `<p>${total}<p>`;
+    console.log(array1)
+    console.log(total)
     //llamada a la funcion para calcular la puntuacion total del jugador 1
     resultadofinal();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 1 jugador 1 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = false;
   cambiarColorCirculo();
-  eliminarDado(array1_jugador2, array1, fila_1_jugador2);
+  
 });
 
 //Evento para colocar el dado el las casillas de la fila 2 del jugador 1
@@ -153,7 +156,7 @@ fila2_id.addEventListener("click", function () {
     resultadofinal();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 2 jugador 1 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = false;
   cambiarColorCirculo();
@@ -190,7 +193,7 @@ fila3_id.addEventListener("click", function () {
     resultadofinal();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 3 jugador 1 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = false;
   cambiarColorCirculo();
@@ -285,7 +288,7 @@ fila1_jugador2.addEventListener("click", function () {
     resultadofinal_jugador2();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 1 jugador 2 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = true;
   cambiarColorCirculo();
@@ -321,7 +324,7 @@ fila2_jugador2.addEventListener("click", function () {
     resultadofinal_jugador2();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 2 jugador 2 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = true;
   cambiarColorCirculo();
@@ -358,76 +361,25 @@ fila3_jugador2.addEventListener("click", function () {
     resultadofinal_jugador2();
   }
 
-  //En caso de no colocar el dado:
+  //Ahora fila 3 jugador 2 cambia los valores y devuelve esto
   dadoTirado = false;
   turnoJugador = true;
   cambiarColorCirculo();
   eliminarDado(array3, array3_jugador2, fila_3);
 });
 
-//CAMBIAR LOS FONDOS SEGUN EL POKEMON
-let poke1 = localStorage.getItem("PokemonJ1");
-let poke2 = localStorage.getItem("PokemonJ2");
-let poke3 = localStorage.getItem("PokemonJ3");
-let poke4 = localStorage.getItem("PokemonJ4");
-let poke5 = localStorage.getItem("PokemonJ5");
-let poke6 = localStorage.getItem("PokemonJ6");
-let poke7 = localStorage.getItem("PokemonJ7");
-let poke8 = localStorage.getItem("PokemonJ8");
 
-//cambiar fondo dependiendo del pokemon por localStorage
-//OPTIMIZAR SI HAY TIEMPO
-if (poke1 == "P1") {
-  if (poke2 == "P2") {
-    cambiarFondo("imagenes/FondoP2.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("imagenes/FondoP3.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("imagenes/FondoP4.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("imagenes/FondoP5.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("imagenes/FondoP6.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("imagenes/FondoP7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("imagenes/FondoP8.png");
-  }else{
-    cambiarFondo("imagenes/FondoP1.png");
-  }
-
-
-
-}else if(poke2=="P2"){
-  if (poke2 == "P2") {
-    cambiarFondo("imagenes/FondoP2.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("imagenes/FondoP3.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("imagenes/FondoP4.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("imagenes/FondoP5.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("imagenes/FondoP6.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("imagenes/FondoP7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("imagenes/FondoP8.png");
-  }else{
-    cambiarFondo("imagenes/FondoP2.png");
-  }
-}
-
-
-
-// Cambiar el fondo de la página dependiendo del pokemon
-function cambiarFondo(url) {
-  document.body.style.backgroundImage = `url(${url})`;
-  document.body.style.backgroundRepeat = "no-repeat";
-  document.body.style.backgroundSize = "100% 100%";
-  document.body.style.backgroundPosition = "center";
-}
-
+// let poke1 = localStorage.getItem("PokemonJ1");
+// let poke2 = localStorage.getItem("PokemonJ2");
+// //cambiar fondo dependiendo del pokemon por localStorage
+// if (poke1 == "charmander") {
+//   if (poke2 == "bulbasaur") {
+//     cambiarFondo("/imagenes/rayo.gif");
+//   }
+//   if (poke2 == "squirtle") {
+//     cambiarFondo("/imagenes/fondoAgua.png");
+//   }
+// }
 
 
 
@@ -446,16 +398,54 @@ function cambiarColorCirculo() {
   }
 }
 
-//Inicializamos el color del circulo
-cambiarColorCirculo();
-
+// // Cambiar el fondo de la página dependiendo del pokemon
+// function cambiarFondo(url) {
+//   document.body.style.backgroundImage = "url('" + url + "')";
+//   document.body.style.backgroundRepeat = "no-repeat";
+//   document.body.style.backgroundSize = "100% 100%";
+//   document.body.style.backgroundPosition = "center";
+// }
 
 //esta puta mierda no va
-function eliminarDado(dadosAEliminar, dadosActivos, fila) {
+
+// function eliminarDado(dadosAEliminar, dadosActivos, fila) {
+//   for (let i =0; i < dadosActivos.length; i++) {
+
+//     if (dadosAEliminar.includes(dadosActivos[i])) {
+//       for (let j = 0; j < dadosActivos.length; j++) {
+//       let num = array[j];
+//       let veces = 0;
+
+//     //contamos cuántas veces aparece el número en el array
+//         for (let k = 0; k < dadosActivos.length; k++) {
+//           if (array[k] === num) {
+//            veces++;
+//           }
+//         }
+//       }
+//       for(let w=0; w>veces;w++){
+//         dadosActivos.splice(i, 1);
+//         fila.splice(i, 1);
+//         fila[i].style.backgroundImage = "";
+//       }
+//     }
+//   }
+// }
+function eliminarDado(dadosAEliminar, dadosActivos, casillas) {
   for (let i = dadosActivos.length - 1; i >= 0; i--) {
     if (dadosAEliminar.includes(dadosActivos[i])) {
-      dadosActivos.splice(i, 1);
-      fila[i].style.backgroundImage = "";
+      // Elimina el valor del array
+      let valorEliminado = dadosAEliminar.splice(i, 1)[0];
+      
+      // Recorre casillas visuales de arriba a abajo
+      for (let j = 0; j < casillas.length; j++) {
+        if (casillas[j].style.backgroundImage.includes(`dice${valorEliminado}.png`)) {
+          casillas[j].style.backgroundImage = "";
+        }
+      }
     }
+    
   }
 }
+//Inicializamos el color del circulo
+cambiarColorCirculo();
