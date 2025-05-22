@@ -53,7 +53,7 @@ P8.addEventListener("click", function () {
 //ELIMINAR LOS POKEMONS
 let eliminar = document.getElementById("eliminar");
 
-eliminar.addEventListener("click", function () {
+window.onload = function () {
     console.log("eliminar");
     localStorage.removeItem("PokemonJ1");
     localStorage.removeItem("PokemonJ2");
@@ -63,6 +63,6 @@ eliminar.addEventListener("click", function () {
     localStorage.removeItem("PokemonJ6");
     localStorage.removeItem("PokemonJ7");
     localStorage.removeItem("PokemonJ8");
-});
+};
 
 

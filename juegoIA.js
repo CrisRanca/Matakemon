@@ -394,17 +394,16 @@ function actualizarTodasLasPuntuaciones() {
     dados_fila_1_j2.length + dados_fila_2_j2.length + dados_fila_3_j2.length === 9
   ) {
     verificarGanador();
-  } 
+  }
 }
 
 
 //FUNCION PARA VERIFICAR AL GANADOR
 function verificarGanador() {
   if (total_filas_sumadas > total_filas_sumadas_j2) {
-    localStorage.setItem("ganador", "Jugador 1", total_filas_sumadas);
-    
+    localStorage.setItem("ganador", "Jugador 1");
   } else if (total_filas_sumadas < total_filas_sumadas_j2) {
-    localStorage.setItem("ganador", "Jugador 2", total_filas_sumadas_j2);
+    localStorage.setItem("ganador", "Jugador 2");
   } else {
     localStorage.setItem("ganador", "Empate");
   }
@@ -431,151 +430,21 @@ let poke8 = localStorage.getItem("PokemonJ8");
 //cambiar fondo dependiendo del pokemon por localStorage
 //OPTIMIZAR SI HAY TIEMPO
 if (poke1 == "P1") {
-
-  if (poke2 == "P2") {
-    cambiarFondo("imagenes/FondoP1P2.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("imagenes/FondoP1P3.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("imagenes/FondoP1P4.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("imagenes/FondoP1P5.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("imagenes/FondoP1P6.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("imagenes/FondoP1P7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("imagenes/FondoP1P8.png");
-  }else{
     cambiarFondo("imagenes/FondoP1.png");
-  }  
-  pokemonElegidoJ1("imagenes/pokemon1.png");
 }else if(poke2=="P2"){
-  if (poke1 == "P1") {
-    cambiarFondo("imagenes/FondoP1P2.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("imagenes/FondoP2P3.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("imagenes/FondoP2P4.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("imagenes/FondoP2P5.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("imagenes/FondoP2P6.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("imagenes/FondoP2P7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("imagenes/FondoP2P8.png");
-  }else{
     cambiarFondo("imagenes/FondoP2.png");
-  }
 }else if(poke3=="P3"){
-  if (poke1 == "P1") {
-    cambiarFondo("imagenes/FondoP1P3.png");
-  }else if (poke2 == "P2") {
-    cambiarFondo("imagenes/FondoP2P3.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("imagenes/FondoP3P4.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("imagenes/FondoP3P5.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("imagenes/FondoP3P6.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("imagenes/FondoP3P7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("imagenes/FondoP3P8.png");
-  }else{
     cambiarFondo("imagenes/FondoP3.png");
-  }
 }else if(poke4=="P4"){
-  if (poke1 == "P1") {
-    cambiarFondo("imagenes/FondoP1P4.png");
-  }else if (poke2 == "P2") {
-    cambiarFondo("imagenes/FondoP2P4.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("imagenes/FondoP3P4.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("imagenes/FondoP4P5.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("imagenes/FondoP4P6.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("imagenes/FondoP4P7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("imagenes/FondoP4P8.png");
-  }else{
     cambiarFondo("imagenes/FondoP4.png");
-  }
 }else if(poke5=="P5"){
-  if (poke1 == "P1") {
-    cambiarFondo("imagenes/FondoP1P5.png");
-  }else if (poke2 == "P2") {
-    cambiarFondo("imagenes/FondoP2P5.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("imagenes/FondoP3P5.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("imagenes/FondoP4P5.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("imagenes/FondoP5P6.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("imagenes/FondoP5P7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("imagenes/FondoP5P8.png");
-  }else{
     cambiarFondo("imagenes/FondoP5.png");
-  }
 }else if(poke6=="P6"){
-  if (poke1 == "P1") {
-    cambiarFondo("imagenes/FondoP1P6.png");
-  }else if (poke2 == "P2") {
-    cambiarFondo("imagenes/FondoP2P6.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("imagenes/FondoP3P6.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("imagenes/FondoP4P6.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("imagenes/FondoP5P6.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("imagenes/FondoP6P7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("imagenes/FondoP6P8.png");
-  }else{
     cambiarFondo("imagenes/FondoP6.png");
-  }
 }else if(poke7=="P7"){
-  if (poke1 == "P1") {
-    cambiarFondo("imagenes/FondoP1P7.png");
-  }else if (poke2 == "P2") {
-    cambiarFondo("imagenes/FondoP2P7.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("imagenes/FondoP3P74.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("imagenes/FondoP4P7.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("imagenes/FondoP5P7.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("imagenes/FondoP6P7.png");
-  }else if (poke8 == "P8") {
-    cambiarFondo("imagenes/FondoP7P8.png");
-  }else{
     cambiarFondo("imagenes/FondoP7.png");
-  }
 }else if(poke8=="P8"){
-  if (poke1 == "P1") {
-    cambiarFondo("imagenes/FondoP1P8.png");
-  }else if (poke2 == "P2") {
-    cambiarFondo("imagenes/FondoP2P8.png");
-  }else if (poke3 == "P3") {
-    cambiarFondo("imagenes/FondoP3P8.png");
-  }else if (poke4 == "P4") {
-    cambiarFondo("imagenes/FondoP4P8.png");
-  }else if (poke5 == "P5") {
-    cambiarFondo("imagenes/FondoP5P8.png");
-  }else if (poke6 == "P6") {
-    cambiarFondo("imagenes/FondoP6P8.png");
-  }else if (poke7 == "P7") {
-    cambiarFondo("imagenes/FondoP7P8.png");
-  }else{
     cambiarFondo("imagenes/FondoP8.png");
-  }
 }
 
 // Cambiar el fondo de la página dependiendo del pokemon
@@ -586,12 +455,6 @@ function cambiarFondo(url) {
   document.body.style.backgroundPosition = "center";
 }
 
-function pokemonElegidoJ1(url){
-  document.pokemonJ1.style.backgroundImage = `url(${url})`;
-  document.body,style.backgroundSize="contain"
-  document.body.style.backgroundRepeat = "no-repeat";
-  document.body.style.backgroundPosition = "left";
-}
 
 let tirardadoaudio=new Audio('./audio/tirar.mp3');
 let colocardadoaudio = new Audio('./audio/colocar.mp3');

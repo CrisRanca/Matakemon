@@ -243,7 +243,7 @@ html, body {
 
 
 /*POKEMONS DE LOS JUGADORES*/
-#pokemonJ1{
+/* #pokemonJ1{
     z-index:7;
     width: 115px;
 
@@ -259,7 +259,7 @@ html, body {
     position: absolute;
     right: 2%;
     top:410px;
-}
+} */
 
 
 
@@ -282,6 +282,7 @@ html, body {
         text-align: center;
         margin-top: 6px;
     }
+
 }
 
 /*jugador 2*/

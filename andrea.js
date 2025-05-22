@@ -1,4 +1,5 @@
 //---JUGADOR 1--
+localStorage.removeItem("ganador");
 //VARIABLES
 //turno
 let turnoJugador = Math.random() < 0.5;
@@ -7,13 +8,13 @@ let aux;
 //Contenedor para la imagen de lanzar el dado
 let contenedorImagen = document.getElementById("lanzarDado");
 //Clases para las casillas de las filas del primer jugador
-let fila_1 = document.getElementsByClassName("Fila1");
-let fila_2 = document.getElementsByClassName("Fila2");
-let fila_3 = document.getElementsByClassName("Fila3");
+let casillas_fila_1 = document.getElementsByClassName("Fila1");
+let casillas_fila_2 = document.getElementsByClassName("Fila2");
+let casillas_fila_3 = document.getElementsByClassName("Fila3");
 //Arrays para guardar los dados del jugador uno (por filas)
-let array1 = [];
-let array2 = [];
-let array3 = [];
+let dados_fila_1 = [];
+let dados_fila_2 = [];
+let dados_fila_3 = [];
 //Math.random para saber que dado sale al tirar
 let valorDado;
 //Variable para saber si se ha colocado el dado o no
@@ -27,11 +28,11 @@ let puntuacion1 = document.getElementById("puntuacion_1");
 let puntuacion2 = document.getElementById("puntuacion_2");
 let puntuacion3 = document.getElementById("puntuacion_3");
 //Puntuacion por fila
-let total = 0;
-let total2 = 0;
-let total3 = 0;
+let total_fila_1 = 0;
+let total_fila_2 = 0;
+let total_fila_3 = 0;
 //Puntuacion total
-let totaldefinitivo = 0;
+let total_filas_sumadas = 0;
 //Mostrar la puntuacion final
 let totalFinalJ1 = document.getElementById("totalJ1");
 
@@ -41,9 +42,9 @@ function tirarDado() {
   valorDado = Math.floor(Math.random() * 6) + 1;
 
   //aux para la imagen del dado
-  aux = `url(dados/dice${valorDado}.png)`;
+  aux = `url(imagenes/dice${valorDado}.png)`;
   //imagen del dado en la casilla de lanzar dado
-  contenedorImagen.style.backgroundImage = `url(dados/dice${valorDado}.png)`;
+  contenedorImagen.style.backgroundImage = aux;
 
   dadoTirado = true;
 }
@@ -70,21 +71,21 @@ function calcularPuntuacion(array) {
   return puntuacion;
 }
 
-
 //Funcion para calcular la puntuacion total del jugador 1
 function resultadofinal() {
-  totaldefinitivo = total + total2 + total3;
-  totalFinalJ1.innerHTML = `<p style="margin-top: 6px;">Puntos: ${totaldefinitivo}<p>`;
-  return console.log(totaldefinitivo);
+  total_filas_sumadas = total_fila_1 + total_fila_2 + total_fila_3;
+  totalFinalJ1.innerHTML = `<p style="margin-top: 6px;">Puntos: ${total_filas_sumadas}<p>`;
+  return console.log("Puntuación j1:", total_filas_sumadas);
 }
 
 //EVENTOS
 //Evento para clickar en la casilla de lanzar dado
 contenedorImagen.addEventListener("click", () => {
   //condicional para que no se vuelva a lanzar el dado sin colocarlo
-  if (dadoTirado) return alert("profe hijodeputa comeme los huevos");
+  if (dadoTirado) return alert("Coloca el dado primero");
   //llamada a la función tirarDado
   tirarDado();
+  colocardadoaudio.play();
 });
 
 //Evento para colocar el dado el las casillas de la fila 1 del jugador 1
@@ -95,7 +96,7 @@ fila1_id.addEventListener("click", function () {
   }
 
   //condicional para no poder volver a tirar el dado si la fila esta llena
-  if (array1.length === 3) return;
+  if (dados_fila_1.length === 3) return;
 
   //condicional para que en el caso de colocar el dado haga:
   if (dadoTirado) {
@@ -103,29 +104,18 @@ fila1_id.addEventListener("click", function () {
 
     //bucle para añadir al array de la fila 1 el valor del dado colocado
     for (let i = 2; i >= 0; i--) {
-      if (fila_1[i].style.backgroundImage === "") {
-        fila_1[i].style.backgroundImage = aux;
-        array1.push(valorDado);
+      if (casillas_fila_1[i].style.backgroundImage === "") {
+        casillas_fila_1[i].style.backgroundImage = aux;
+        dados_fila_1.push(valorDado);
         break;
       }
     }
-    //FUNCION DE ELIMINAR EL VALOR REPETIDO CON LA FILA DE ENFRENTE SI SE PONE UN NUMERO COINCIDENTE
-    eliminarDado(array1_jugador2, array1, fila_1_jugador2);
-    //calcular el total de la puntuacion de la fila 1
-    total = calcularPuntuacion(array1);
-    //mostrar la puntuacion de la fila 1
-    puntuacion1.innerHTML = `<p>${total}<p>`;
-    console.log(array1)
-    console.log(total)
-    //llamada a la funcion para calcular la puntuacion total del jugador 1
-    resultadofinal();
+    turnoJugador = false;
+    cambiarColorCirculo();
+    eliminarDado(dados_fila_1_j2, dados_fila_1, casillas_fila_1_j2);
+    actualizarTodasLasPuntuaciones();
+    dadoTirado = false;
   }
-
-  //Ahora fila 1 jugador 1 cambia los valores y devuelve esto
-  dadoTirado = false;
-  turnoJugador = false;
-  cambiarColorCirculo();
-  
 });
 
 //Evento para colocar el dado el las casillas de la fila 2 del jugador 1
@@ -135,34 +125,25 @@ fila2_id.addEventListener("click", function () {
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
-  if (array2.length === 3) return;
+  if (dados_fila_2.length === 3) return;
 
   //condicional para que en el caso de colocar el dado haga:
   if (dadoTirado) {
     contenedorImagen.style.backgroundImage = "";
     //bucle para añadir al array de la fila 2 el valor del dado colocado
     for (let i = 2; i >= 0; i--) {
-      if (fila_2[i].style.backgroundImage === "") {
-        fila_2[i].style.backgroundImage = aux;
-        array2.push(valorDado);
+      if (casillas_fila_2[i].style.backgroundImage === "") {
+        casillas_fila_2[i].style.backgroundImage = aux;
+        dados_fila_2.push(valorDado);
         break;
       }
     }
-    //FUNCION DE ELIMINAR EL VALOR REPETIDO CON LA FILA DE ENFRENTE SI SE PONE UN NUMERO COINCIDENTE
-    eliminarDado(array2_jugador2, array2, fila_2_jugador2);
-    //calcular el total de la puntuacion de la fila 2
-    total2 = calcularPuntuacion(array2);
-    //mostrar la puntuacion de la fila 2
-    puntuacion2.innerHTML = `<p>${total2}<p>`;
-    //llamada a la funcion para calcular la puntuacion total del jugador 1
-    resultadofinal();
+    turnoJugador = false;
+    cambiarColorCirculo();
+    eliminarDado(dados_fila_2_j2, dados_fila_2, casillas_fila_2_j2);
+    actualizarTodasLasPuntuaciones();
+    dadoTirado = false;
   }
-
-  //Ahora fila 2 jugador 1 cambia los valores y devuelve esto
-  dadoTirado = false;
-  turnoJugador = false;
-  cambiarColorCirculo();
-
 });
 
 //Evento para colocar el dado el las casillas de la fila 3 del jugador 1
@@ -172,7 +153,7 @@ fila3_id.addEventListener("click", function () {
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
-  if (array3.length === 3) return;
+  if (dados_fila_3.length === 3) return;
 
   //condicional para que en el caso de colocar el dado haga:
   if (dadoTirado) {
@@ -180,52 +161,44 @@ fila3_id.addEventListener("click", function () {
 
     //bucle para añadir al array de la fila 3 el valor del dado colocado
     for (let i = 2; i >= 0; i--) {
-      if (fila_3[i].style.backgroundImage === "") {
-        fila_3[i].style.backgroundImage = aux;
-        array3.push(valorDado);
+      if (casillas_fila_3[i].style.backgroundImage === "") {
+        casillas_fila_3[i].style.backgroundImage = aux;
+        dados_fila_3.push(valorDado);
         break;
       }
     }
-    //FUNCION DE ELIMINAR EL VALOR REPETIDO CON LA FILA DE ENFRENTE SI SE PONE UN NUMERO COINCIDENTE
-    eliminarDado(array3_jugador2, array3, fila_3_jugador2);
-    //calcular el total de la puntuacion de la fila 3
-    total3 = calcularPuntuacion(array3);
-    //mostrar la puntuacion de la fila 3
-    puntuacion3.innerHTML = `<p>${total3}<p>`;
-    //llamada a la funcion para calcular la puntuacion total del jugador 1
-    resultadofinal();
+    turnoJugador = false;
+    cambiarColorCirculo();
+    eliminarDado(dados_fila_3_j2, dados_fila_3, casillas_fila_3_j2);
+    actualizarTodasLasPuntuaciones();
+    dadoTirado = false;
   }
-  //Ahora fila 3 jugador 1 cambia los valores y devuelve esto
-  dadoTirado = false;
-  turnoJugador = false;
-  cambiarColorCirculo();
 });
 
 //---JUGADOR 2--
 //VARIABLES
 //Clases para las casillas de las filas
-let fila_1_jugador2 = document.getElementsByClassName("Fila1_jugador2");
-let fila_2_jugador2 = document.getElementsByClassName("Fila2_jugador2");
-let fila_3_jugador2 = document.getElementsByClassName("Fila3_jugador2");
+let casillas_fila_1_j2 = document.getElementsByClassName("Fila1_jugador2");
+let casillas_fila_2_j2 = document.getElementsByClassName("Fila2_jugador2");
+let casillas_fila_3_j2 = document.getElementsByClassName("Fila3_jugador2");
 //Arrays para guardar los dados del jugador dos (por filas)
-let array1_jugador2 = [];
-let array2_jugador2 = [];
-let array3_jugador2 = [];
+let dados_fila_1_j2 = [];
+let dados_fila_2_j2 = [];
+let dados_fila_3_j2 = [];
 //Id de cada fila del segundo jugador
-let fila1_jugador2 = document.getElementById("fila1_jugador2");
-let fila2_jugador2 = document.getElementById("fila2_jugador2");
-let fila3_jugador2 = document.getElementById("fila3_jugador2");
+let fila1_jugador2_id = document.getElementById("fila1_jugador2");
+let fila2_jugador2_id = document.getElementById("fila2_jugador2");
+let fila3_jugador2_id = document.getElementById("fila3_jugador2");
 //Puntuaciones de cada fila
 let puntuacion1_jugador2 = document.getElementById("puntuacion_1_jugador2");
 let puntuacion2_jugador2 = document.getElementById("puntuacion_2_jugador2");
 let puntuacion3_jugador2 = document.getElementById("puntuacion_3_jugador2");
-
 //Puntuacion por fila
-let total_jugador2 = 0;
-let total2_jugador2 = 0;
-let total3_jugador2 = 0;
+let total_fila_1_j2 = 0;
+let total_fila_2_j2 = 0;
+let total_fila_3_j2 = 0;
 //Puntuacion total
-let totaldefinitivo_jugador2 = 0;
+let total_filas_sumadas_j2 = 0;
 //Mostrar la puntuacion final
 let totalFinalJ2 = document.getElementById("totalJ2");
 
@@ -254,20 +227,20 @@ function calcularPuntuacion_jugador2(array_jugador2) {
 
 //Funcion para calcular la puntuacion total del jugador 2
 function resultadofinal_jugador2() {
-  totaldefinitivo_jugador2 = total_jugador2 + total2_jugador2 + total3_jugador2;
-  totalFinalJ2.innerHTML = `<p style="margin-top: 6px;">Puntos: ${totaldefinitivo_jugador2}</p>`;
-  return console.log(totaldefinitivo_jugador2);
+  total_filas_sumadas_j2 = total_fila_1_j2 + total_fila_2_j2 + total_fila_3_j2;
+  totalFinalJ2.innerHTML = `<p style="margin-top: 6px;">Puntos: ${total_filas_sumadas_j2}</p>`;
+  return console.log("Puntuacón j2", total_filas_sumadas_j2);
 }
 
 //EVENTOS
 //Evento para colocar el dado el las casillas de la fila 1 del jugador 2
-fila1_jugador2.addEventListener("click", function () {
+fila1_jugador2_id.addEventListener("click", function () {
   if (turnoJugador) {
     alert("No es tu turno");
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
-  if (array1_jugador2.length === 3) return;
+  if (dados_fila_1_j2.length === 3) return;
 
   //condicional para que en el caso de colocar el dado haga:
   if (dadoTirado) {
@@ -275,72 +248,56 @@ fila1_jugador2.addEventListener("click", function () {
 
     //bucle para añadir al array de la fila 1 el valor del dado colocado
     for (let i = 0; i < 3; i++) {
-      if (fila_1_jugador2[i].style.backgroundImage === "") {
-        fila_1_jugador2[i].style.backgroundImage = aux;
-        array1_jugador2.push(valorDado);
+      if (casillas_fila_1_j2[i].style.backgroundImage === "") {
+        casillas_fila_1_j2[i].style.backgroundImage = aux;
+        dados_fila_1_j2.push(valorDado);
         break;
       }
     }
-    eliminarDado(array1, array1_jugador2, fila_1);
-    //calcular el total de la puntuacion de la fila 1
-    total_jugador2 = calcularPuntuacion_jugador2(array1_jugador2);
-    //mostrar la puntuacion de la fila 1
-    puntuacion1_jugador2.innerHTML = `<p>${total_jugador2}<p>`;
-    //llamada a la funcion para calcular la puntuacion total del jugador 2
-    resultadofinal_jugador2();
+    turnoJugador = true;
+    cambiarColorCirculo();
+    eliminarDado(dados_fila_1, dados_fila_1_j2, casillas_fila_1);
+    actualizarTodasLasPuntuaciones();
+    dadoTirado = false;
   }
-
-  //Ahora fila 1 jugador 2 cambia los valores y devuelve esto
-  dadoTirado = false;
-  turnoJugador = true;
-  cambiarColorCirculo();
-  
 });
 
 //Evento para colocar el dado el las casillas de la fila 2 del jugador 2
-fila2_jugador2.addEventListener("click", function () {
+fila2_jugador2_id.addEventListener("click", function () {
   if (turnoJugador) {
     alert("No es tu turno");
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
-  if (array2_jugador2.length === 3) return;
+  if (dados_fila_2_j2.length === 3) return;
 
   //condicional para que en el caso de colocar el dado haga:
   if (dadoTirado) {
     contenedorImagen.style.backgroundImage = "";
     //bucle para añadir al array de la fila 2 el valor del dado colocado
     for (let i = 0; i < 3; i++) {
-      if (fila_2_jugador2[i].style.backgroundImage === "") {
-        fila_2_jugador2[i].style.backgroundImage = aux;
-        array2_jugador2.push(valorDado);
+      if (casillas_fila_2_j2[i].style.backgroundImage === "") {
+        casillas_fila_2_j2[i].style.backgroundImage = aux;
+        dados_fila_2_j2.push(valorDado);
         break;
       }
     }
-    eliminarDado(array2, array2_jugador2, fila_2);
-    //calcular el total de la puntuacion de la fila 2
-    total2_jugador2 = calcularPuntuacion(array2_jugador2);
-    //mostrar la puntuacion de la fila 2
-    puntuacion2_jugador2.innerHTML = `<p>${total2_jugador2}<p>`;
-    //llamada a la funcion para calcular la puntuacion total del jugador 2
-    resultadofinal_jugador2();
+    turnoJugador = true;
+    cambiarColorCirculo();
+    eliminarDado(dados_fila_2, dados_fila_2_j2, casillas_fila_2);
+    actualizarTodasLasPuntuaciones();
+    dadoTirado = false;
   }
-
-  //Ahora fila 2 jugador 2 cambia los valores y devuelve esto
-  dadoTirado = false;
-  turnoJugador = true;
-  cambiarColorCirculo();
-  
 });
 
 //Evento para colocar el dado el las casillas de la fila 3 del jugador 2
-fila3_jugador2.addEventListener("click", function () {
+fila3_jugador2_id.addEventListener("click", function () {
   if (turnoJugador) {
     alert("No es tu turno");
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
-  if (array3_jugador2.length === 3) return;
+  if (dados_fila_3_j2.length === 3) return;
 
   //condicional para que en el caso de colocar el dado haga:
   if (dadoTirado) {
@@ -348,28 +305,22 @@ fila3_jugador2.addEventListener("click", function () {
 
     //bucle para añadir al array de la fila 3 el valor del dado colocado
     for (let i = 0; i < 3; i++) {
-      if (fila_3_jugador2[i].style.backgroundImage === "") {
-        fila_3_jugador2[i].style.backgroundImage = aux;
-        array3_jugador2.push(valorDado);
+      if (casillas_fila_3_j2[i].style.backgroundImage === "") {
+        casillas_fila_3_j2[i].style.backgroundImage = aux;
+        dados_fila_3_j2.push(valorDado);
         break;
       }
     }
-    eliminarDado(array3, array3_jugador2, fila_3);
-    //calcular el total de la puntuacion de la fila 3
-    total3_jugador2 = calcularPuntuacion_jugador2(array3_jugador2);
-    //mostrar la puntuacion de la fila 3
-    puntuacion3_jugador2.innerHTML = `<p>${total3_jugador2}<p>`;
-    //llamada a la funcion para calcular la puntuacion total del jugador 2
-    resultadofinal_jugador2();
+    turnoJugador = true;
+    cambiarColorCirculo();
+    eliminarDado(dados_fila_3, dados_fila_3_j2, casillas_fila_3);
+    actualizarTodasLasPuntuaciones();
+    dadoTirado = false;
   }
-
-  //Ahora fila 3 jugador 2 cambia los valores y devuelve esto
-  dadoTirado = false;
-  turnoJugador = true;
-  cambiarColorCirculo();
-  
 });
 
+//CAMBIAMOS LO RELACIONADO AL COLOR DEL CIRCULO
+//creamos las variables del circulo de cada jugador
 let circuloJ1 = document.getElementById("circulo_jugador1");
 let circuloJ2 = document.getElementById("circulo_jugador2");
 
@@ -384,44 +335,255 @@ function cambiarColorCirculo() {
   }
 }
 
-// // Cambiar el fondo de la página dependiendo del pokemon
-// function cambiarFondo(url) {
-//   document.body.style.backgroundImage = "url('" + url + "')";
-//   document.body.style.backgroundRepeat = "no-repeat";
-//   document.body.style.backgroundSize = "100% 100%";
-//   document.body.style.backgroundPosition = "center";
-// }
 
+//FUNCION ELIMINAR DADO
+function eliminarDado(arrayObjetivo, arrayPropio, casillasObjetivo) {
+  let valorAEliminar = arrayPropio[arrayPropio.length - 1];
 
-function eliminarDado(dadosAEliminar, dadosActivos, casillas) {
-  for (let i = dadosActivos.length - 1; i >= 0; i--) {
-    if (dadosAEliminar.includes(dadosActivos[i])) {
-      // Elimina el valor del array
-      let valorEliminado = dadosAEliminar.splice(i, 1)[0];
-      
-      // Recorre casillas visuales de arriba a abajo
-      for (let j = 0; j < casillas.length; j++) {
-        if (casillas[j].style.backgroundImage.includes(`dice${valorEliminado}.png`)) {
-          casillas[j].style.backgroundImage = "";
-        }
-      }
+  for (let i = arrayObjetivo.length - 1; i >= 0; i--) {
+    if (arrayObjetivo[i] === valorAEliminar) {
+      arrayObjetivo.splice(i, 1); // Eliminamos del array
+      // Eliminamos visualmente el dado de la casilla correspondiente
+      actualizarImagenesFila(arrayObjetivo, casillasObjetivo);
     }
   }
 }
-// function eliminarDado(dadosAEliminar, dadosActivos, casillas) {
-//   for (let i = dadosActivos.length - 1; i >= 0; i--) {
-//     if (dadosAEliminar.includes(dadosActivos[i])) {
-//       // Elimina el valor del array
-//       let valorEliminado = dadosAEliminar.splice(i, 1)[0];
-      
-//       // Recorre casillas visuales de arriba a abajo
-//       for (let j = 0; j < casillas.length; j++) {
-//         if (casillas[j].style.backgroundImage.includes(`dice${valorEliminado}.png`)) {
-//           casillas[j].style.backgroundImage = "";
-//         }
-//       }
-//     }
-//   }
-// }
+//FUNCION PARA ACTUALZAR LAS IMAGENES DE LOS DADOS
+function actualizarImagenesFila(array, casillas) {
+  for (let i = 0; i < casillas.length; i++) {
+    casillas[i].style.backgroundImage = "";
+  }
+
+  let startIndex;
+  if (turnoJugador) {
+    startIndex = casillas.length - array.length; // alineado a la derecha
+  } else {
+    startIndex = 0; // alineado a la izquierda
+  }
+
+  for (let i = 0; i < array.length; i++) {
+    let index = startIndex + i;
+    if (casillas[index]) {
+      casillas[index].style.backgroundImage = `url(imagenes/dice${array[i]}.png)`;
+    }
+  }
+}
+//FUNCION PARA ACTUALIZAR LAS PUNTUACIONES
+function actualizarTodasLasPuntuaciones() {
+  total_fila_1 = calcularPuntuacion(dados_fila_1);
+  total_fila_2 = calcularPuntuacion(dados_fila_2);
+  total_fila_3 = calcularPuntuacion(dados_fila_3);
+
+  total_fila_1_j2 = calcularPuntuacion_jugador2(dados_fila_1_j2);
+  total_fila_2_j2 = calcularPuntuacion_jugador2(dados_fila_2_j2);
+  total_fila_3_j2 = calcularPuntuacion_jugador2(dados_fila_3_j2);
+
+  puntuacion1_jugador2.innerHTML = `<p>${total_fila_1_j2}<p>`;
+  puntuacion2_jugador2.innerHTML = `<p>${total_fila_2_j2}<p>`;
+  puntuacion3_jugador2.innerHTML = `<p>${total_fila_3_j2}<p>`;
+
+  puntuacion1.innerHTML = `<p>${total_fila_1}<p>`;
+  puntuacion2.innerHTML = `<p>${total_fila_2}<p>`;
+  puntuacion3.innerHTML = `<p>${total_fila_3}<p>`;
+
+  resultadofinal();
+  resultadofinal_jugador2();
+  //si la suma de los tamaños de los 3 arrays es 9, se acaba el juego
+  if (
+    dados_fila_1.length + dados_fila_2.length + dados_fila_3.length === 9 ||
+    dados_fila_1_j2.length + dados_fila_2_j2.length + dados_fila_3_j2.length === 9
+  ) {
+    verificarGanador();
+  }
+}
+
+
+//FUNCION PARA VERIFICAR AL GANADOR
+function verificarGanador() {
+  if (total_filas_sumadas > total_filas_sumadas_j2) {
+    localStorage.setItem("ganador", "Jugador 1");
+  } else if (total_filas_sumadas < total_filas_sumadas_j2) {
+    localStorage.setItem("ganador", "Jugador 2");
+  } else {
+    localStorage.setItem("ganador", "Empate");
+  }
+
+  window.location.href = "ganador.html";
+}
 //Inicializamos el color del circulo
 cambiarColorCirculo();
+
+
+
+//AQUI ESTA TODO LO RELACIONADO CON LOS FONDOS DE LOS POKEMONS
+
+//CAMBIAR LOS FONDOS SEGUN EL POKEMON
+let poke1 = localStorage.getItem("PokemonJ1");
+let poke2 = localStorage.getItem("PokemonJ2");
+let poke3 = localStorage.getItem("PokemonJ3");
+let poke4 = localStorage.getItem("PokemonJ4");
+let poke5 = localStorage.getItem("PokemonJ5");
+let poke6 = localStorage.getItem("PokemonJ6");
+let poke7 = localStorage.getItem("PokemonJ7");
+let poke8 = localStorage.getItem("PokemonJ8");
+
+//cambiar fondo dependiendo del pokemon por localStorage
+//OPTIMIZAR SI HAY TIEMPO
+if (poke1 == "P1") {
+  if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP1P2.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP1P3.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP1P4.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP1P5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP1P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP1P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP1P8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP1.png");
+  }
+}else if(poke2=="P2"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P2.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP2P3.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP2P4.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP2P5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP2P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP2P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP2P8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP2.png");
+  }
+}else if(poke3=="P3"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P3.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P3.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP3P4.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP3P5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP3P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP3P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP3P8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP3.png");
+  }
+}else if(poke4=="P4"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P4.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P4.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP3P4.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP4P5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP4P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP4P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP4P8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP4.png");
+  }
+}else if(poke5=="P5"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P5.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P5.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP3P5.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP4P5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP5P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP5P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP5P8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP5.png");
+  }
+}else if(poke6=="P6"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P6.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P6.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP3P6.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP4P6.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP5P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP6P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP6P8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP6.png");
+  }
+}else if(poke7=="P7"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P7.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P7.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP3P74.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP4P7.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP5P7.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP6P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP7P8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP7.png");
+  }
+}else if(poke8=="P8"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P8.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P8.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP3P8.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP4P8.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP5P8.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP6P8.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP7P8.png");
+  }else{
+    cambiarFondo("imagenes/FondoP8.png");
+  }
+}
+
+// Cambiar el fondo de la página dependiendo del pokemon
+function cambiarFondo(url) {
+  document.body.style.backgroundImage = `url(${url})`;
+  document.body.style.backgroundRepeat = "no-repeat";
+  document.body.style.backgroundSize = "100% 100%";
+  document.body.style.backgroundPosition = "center";
+}
+
+
+let tirardadoaudio=new Audio('./audio/tirar.mp3');
+let colocardadoaudio = new Audio('./audio/colocar.mp3');
+

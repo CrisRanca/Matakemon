@@ -1,0 +1,36 @@
+body{
+    background-image: url(imagenes/celebracion.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    margin-left: 28%;
+    margin-top: 19%;
+    font-size: 80px;
+    color: white;
+    font-family: 'Comfortaa';
+}
+.boton1 {
+    margin-top: 30%;
+    width: 50%;
+    height: 50px;
+    font-size: 20px;
+    min-width: 50px;
+    margin-left:6%;
+    margin-top: 5%;
+
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Comfortaa';
+    color: #000000;
+
+    background-color: #ffffff;
+    border: none;
+    border-radius: 20px;
+
+    cursor: pointer;  
+}
+/*transicion del boton*/
+.boton1:hover {
+    color: rgb(0, 247, 25);
+    background-color: rgb(255, 10, 226);
+}

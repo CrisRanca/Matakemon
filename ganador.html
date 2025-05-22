@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Indie+Flower&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="juego.js" defer></script>
+    <link rel="stylesheet" href="ganador.css">
+    <title>ganador</title>
+</head>
+<body>
+
+  <div id="ganador"></div>
+  <div id="mensaje-ganador"></div>
+  <div class="volverinicio">
+            <a href="index.html"><button class="boton1" id="boton2" type="submit">Volver al inicio</button></a>
+    </div>
+</body>
+
+<script>
+    const ganador = localStorage.getItem("ganador");
+    const mensaje = document.getElementById("mensaje-ganador");
+    const puntos=localStorage.getItem(total_filas_sumadas)
+    const puntosj2=localStorage.getItem(total_filas_sumadas)
+
+    if (ganador === "Jugador 1" || ganador === "Jugador 2") {
+      mensaje.innerHTML = `Ganador: ${ganador}`;
+
+      if(ganador==="Jugador 1"){
+        puntos.innerHTML=`Puntuación: ${puntos}`
+      }else{
+        puntosj2.innerHTML=`Puntuación: ${puntosj2}`;
+      }
+    
+    }else if(ganador==="Empate"){
+        mensaje.innerHTML = "Empate";
+    }
+     else {
+      mensaje.innerHTML = "No hay ganador registrado";
+    }
+</script>
+</html>

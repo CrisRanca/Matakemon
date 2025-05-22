@@ -376,32 +376,7 @@ body{
     width: 30%;
     height: 50px;
     min-width: 417px;
-    margin:40px;
-
-    background-color: white;
-    border-radius: 20px;
-    border: 1px #c4c4c4 solid;
-    font-family: 'Comfortaa';
-    font-size: 20px;
-    color: #2c2c2c; 
-    text-decoration: none;    
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.botonesFinales{
-    display: flex;
-    align-items: center;
-    justify-content:space-evenly;
-}
-
-#eliminar{
-    width: 30%;
-    height: 50px;
-    min-width: 417px;
-    margin:40px;
+    margin:10%;
 
     background-color: white;
     border-radius: 20px;
