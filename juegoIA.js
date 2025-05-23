@@ -78,6 +78,13 @@ function resultadofinal() {
   return console.log("Puntuación j1:", total_filas_sumadas);
 }
 
+//Funcion para que empiece o no la ia
+function empiezaIA(){
+  if (!turnoJugador) {
+    return turnoIA();
+  }
+}
+
 //EVENTOS
 //Evento para clickar en la casilla de lanzar dado
 contenedorImagen.addEventListener("click", () => {
@@ -85,13 +92,15 @@ contenedorImagen.addEventListener("click", () => {
   if (dadoTirado) return alert("Coloca el dado primero");
   //llamada a la función tirarDado
   tirarDado();
-  colocardadoaudio.play();
+  tirardadoaudio.play();
 });
+
+empiezaIA()
 
 //Evento para colocar el dado el las casillas de la fila 1 del jugador 1
 fila1_id.addEventListener("click", function () {
   if (!turnoJugador) {
-    alert("No es tu turno");
+    erroraudio.play();
     return;
   }
 
@@ -101,6 +110,8 @@ fila1_id.addEventListener("click", function () {
   //condicional para que en el caso de colocar el dado haga:
   if (dadoTirado) {
     contenedorImagen.style.backgroundImage = "";
+
+    colocardadoaudio.play();
 
     //bucle para añadir al array de la fila 1 el valor del dado colocado
     for (let i = 2; i >= 0; i--) {
@@ -115,13 +126,14 @@ fila1_id.addEventListener("click", function () {
     eliminarDado(dados_fila_1_j2, dados_fila_1, casillas_fila_1_j2);
     actualizarTodasLasPuntuaciones();
     dadoTirado = false;
+    turnoIA();
   }
 });
 
 //Evento para colocar el dado el las casillas de la fila 2 del jugador 1
 fila2_id.addEventListener("click", function () {
   if (!turnoJugador) {
-    alert("No es tu turno");
+    erroraudio.play();
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
@@ -130,6 +142,8 @@ fila2_id.addEventListener("click", function () {
   //condicional para que en el caso de colocar el dado haga:
   if (dadoTirado) {
     contenedorImagen.style.backgroundImage = "";
+
+    colocardadoaudio.play();
     //bucle para añadir al array de la fila 2 el valor del dado colocado
     for (let i = 2; i >= 0; i--) {
       if (casillas_fila_2[i].style.backgroundImage === "") {
@@ -143,13 +157,14 @@ fila2_id.addEventListener("click", function () {
     eliminarDado(dados_fila_2_j2, dados_fila_2, casillas_fila_2_j2);
     actualizarTodasLasPuntuaciones();
     dadoTirado = false;
+    turnoIA();
   }
 });
 
 //Evento para colocar el dado el las casillas de la fila 3 del jugador 1
 fila3_id.addEventListener("click", function () {
   if (!turnoJugador) {
-    alert("No es tu turno");
+    erroraudio.play();
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
@@ -159,6 +174,7 @@ fila3_id.addEventListener("click", function () {
   if (dadoTirado) {
     contenedorImagen.style.backgroundImage = "";
 
+    colocardadoaudio.play();
     //bucle para añadir al array de la fila 3 el valor del dado colocado
     for (let i = 2; i >= 0; i--) {
       if (casillas_fila_3[i].style.backgroundImage === "") {
@@ -172,10 +188,11 @@ fila3_id.addEventListener("click", function () {
     eliminarDado(dados_fila_3_j2, dados_fila_3, casillas_fila_3_j2);
     actualizarTodasLasPuntuaciones();
     dadoTirado = false;
+    turnoIA();
   }
 });
 
-//---JUGADOR 2--
+//---JUGADOR 2, EN ESTE CASO LA IA--
 //VARIABLES
 //Clases para las casillas de las filas
 let casillas_fila_1_j2 = document.getElementsByClassName("Fila1_jugador2");
@@ -232,93 +249,6 @@ function resultadofinal_jugador2() {
   return console.log("Puntuacón j2", total_filas_sumadas_j2);
 }
 
-//EVENTOS
-//Evento para colocar el dado el las casillas de la fila 1 del jugador 2
-fila1_jugador2_id.addEventListener("click", function () {
-  if (turnoJugador) {
-    alert("No es tu turno");
-    return;
-  }
-  //condicional para no poder volver a tirar el dado si la fila esta llena
-  if (dados_fila_1_j2.length === 3) return;
-
-  //condicional para que en el caso de colocar el dado haga:
-  if (dadoTirado) {
-    contenedorImagen.style.backgroundImage = "";
-
-    //bucle para añadir al array de la fila 1 el valor del dado colocado
-    for (let i = 0; i < 3; i++) {
-      if (casillas_fila_1_j2[i].style.backgroundImage === "") {
-        casillas_fila_1_j2[i].style.backgroundImage = aux;
-        dados_fila_1_j2.push(valorDado);
-        break;
-      }
-    }
-    turnoJugador = true;
-    cambiarColorCirculo();
-    eliminarDado(dados_fila_1, dados_fila_1_j2, casillas_fila_1);
-    actualizarTodasLasPuntuaciones();
-    dadoTirado = false;
-  }
-});
-
-//Evento para colocar el dado el las casillas de la fila 2 del jugador 2
-fila2_jugador2_id.addEventListener("click", function () {
-  if (turnoJugador) {
-    alert("No es tu turno");
-    return;
-  }
-  //condicional para no poder volver a tirar el dado si la fila esta llena
-  if (dados_fila_2_j2.length === 3) return;
-
-  //condicional para que en el caso de colocar el dado haga:
-  if (dadoTirado) {
-    contenedorImagen.style.backgroundImage = "";
-    //bucle para añadir al array de la fila 2 el valor del dado colocado
-    for (let i = 0; i < 3; i++) {
-      if (casillas_fila_2_j2[i].style.backgroundImage === "") {
-        casillas_fila_2_j2[i].style.backgroundImage = aux;
-        dados_fila_2_j2.push(valorDado);
-        break;
-      }
-    }
-    turnoJugador = true;
-    cambiarColorCirculo();
-    eliminarDado(dados_fila_2, dados_fila_2_j2, casillas_fila_2);
-    actualizarTodasLasPuntuaciones();
-    dadoTirado = false;
-  }
-});
-
-//Evento para colocar el dado el las casillas de la fila 3 del jugador 2
-fila3_jugador2_id.addEventListener("click", function () {
-  if (turnoJugador) {
-    alert("No es tu turno");
-    return;
-  }
-  //condicional para no poder volver a tirar el dado si la fila esta llena
-  if (dados_fila_3_j2.length === 3) return;
-
-  //condicional para que en el caso de colocar el dado haga:
-  if (dadoTirado) {
-    contenedorImagen.style.backgroundImage = "";
-
-    //bucle para añadir al array de la fila 3 el valor del dado colocado
-    for (let i = 0; i < 3; i++) {
-      if (casillas_fila_3_j2[i].style.backgroundImage === "") {
-        casillas_fila_3_j2[i].style.backgroundImage = aux;
-        dados_fila_3_j2.push(valorDado);
-        break;
-      }
-    }
-    turnoJugador = true;
-    cambiarColorCirculo();
-    eliminarDado(dados_fila_3, dados_fila_3_j2, casillas_fila_3);
-    actualizarTodasLasPuntuaciones();
-    dadoTirado = false;
-  }
-});
-
 //CAMBIAMOS LO RELACIONADO AL COLOR DEL CIRCULO
 //creamos las variables del circulo de cada jugador
 let circuloJ1 = document.getElementById("circulo_jugador1");
@@ -327,11 +257,11 @@ let circuloJ2 = document.getElementById("circulo_jugador2");
 // Cambiar el color del circulo dependiendo de quien sea el turno
 function cambiarColorCirculo() {
   if (turnoJugador) {
-    circuloJ1.style.backgroundColor = "green";
+    circuloJ1.style.backgroundColor = "rgb(197, 255, 195)";
     circuloJ2.style.backgroundColor = "white";
   } else {
     circuloJ1.style.backgroundColor = "white";
-    circuloJ2.style.backgroundColor = "green";
+    circuloJ2.style.backgroundColor = "rgb(197, 255, 195)";
   }
 }
 
@@ -402,8 +332,17 @@ function actualizarTodasLasPuntuaciones() {
 function verificarGanador() {
   if (total_filas_sumadas > total_filas_sumadas_j2) {
     localStorage.setItem("ganador", "Jugador 1");
+    // Cuando el usuario termina el test
+    localStorage.setItem("score", total_filas_sumadas);
+
+// Opcional: redireccionar a la página de resultados
+    window.location.href = "ganador.html";
   } else if (total_filas_sumadas < total_filas_sumadas_j2) {
     localStorage.setItem("ganador", "Jugador 2");
+    localStorage.setItem("score", total_filas_sumadas_j2);
+
+// Opcional: redireccionar a la página de resultados
+    window.location.href = "ganador.html";
   } else {
     localStorage.setItem("ganador", "Empate");
   }
@@ -430,21 +369,149 @@ let poke8 = localStorage.getItem("PokemonJ8");
 //cambiar fondo dependiendo del pokemon por localStorage
 //OPTIMIZAR SI HAY TIEMPO
 if (poke1 == "P1") {
+  if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP1P2.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP1P3.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP1P4.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP1P5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP1P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP1P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP1P8.png");
+  }else{
     cambiarFondo("imagenes/FondoP1.png");
+  }
 }else if(poke2=="P2"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P2.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP2P3.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP2P4.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP2P5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP2P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP2P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP2P8.png");
+  }else{
     cambiarFondo("imagenes/FondoP2.png");
+  }
 }else if(poke3=="P3"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P3.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P3.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP3P4.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP3P5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP3P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP3P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP3P8.png");
+  }else{
     cambiarFondo("imagenes/FondoP3.png");
+  }
 }else if(poke4=="P4"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P4.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P4.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP3P4.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP4P5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP4P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP4P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP4P8.png");
+  }else{
     cambiarFondo("imagenes/FondoP4.png");
+  }
 }else if(poke5=="P5"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P5.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P5.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP3P5.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP4P5.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP5P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP5P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP5P8.png");
+  }else{
     cambiarFondo("imagenes/FondoP5.png");
+  }
 }else if(poke6=="P6"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P6.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P6.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP3P6.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP4P6.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP5P6.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP6P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP6P8.png");
+  }else{
     cambiarFondo("imagenes/FondoP6.png");
+  }
 }else if(poke7=="P7"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P7.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P7.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP3P74.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP4P7.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP5P7.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP6P7.png");
+  }else if (poke8 == "P8") {
+    cambiarFondo("imagenes/FondoP7P8.png");
+  }else{
     cambiarFondo("imagenes/FondoP7.png");
+  }
 }else if(poke8=="P8"){
+  if (poke1 == "P1") {
+    cambiarFondo("imagenes/FondoP1P8.png");
+  }else if (poke2 == "P2") {
+    cambiarFondo("imagenes/FondoP2P8.png");
+  }else if (poke3 == "P3") {
+    cambiarFondo("imagenes/FondoP3P8.png");
+  }else if (poke4 == "P4") {
+    cambiarFondo("imagenes/FondoP4P8.png");
+  }else if (poke5 == "P5") {
+    cambiarFondo("imagenes/FondoP5P8.png");
+  }else if (poke6 == "P6") {
+    cambiarFondo("imagenes/FondoP6P8.png");
+  }else if (poke7 == "P7") {
+    cambiarFondo("imagenes/FondoP7P8.png");
+  }else{
     cambiarFondo("imagenes/FondoP8.png");
+  }
 }
 
 // Cambiar el fondo de la página dependiendo del pokemon
@@ -458,4 +525,44 @@ function cambiarFondo(url) {
 
 let tirardadoaudio=new Audio('./audio/tirar.mp3');
 let colocardadoaudio = new Audio('./audio/colocar.mp3');
+let erroraudio = new Audio ('./audio/error.mp3');
 
+function turnoIA() {
+  setTimeout(() => {
+    // Tirar dado
+    valorDado = Math.floor(Math.random() * 6) + 1;
+    aux = `url(imagenes/dice${valorDado}.png)`;
+    contenedorImagen.style.backgroundImage = aux;
+    dadoTirado = true;
+
+    // Esperar un poco antes de colocar el dado (para simular "pensar")
+    setTimeout(() => {
+      // Filas disponibles
+      let opciones = [];
+      if (dados_fila_1_j2.length < 3) opciones.push({ fila: fila1_jugador2_id, array: dados_fila_1_j2, casillas: casillas_fila_1_j2, contraria: dados_fila_1, casillasContraria: casillas_fila_1 });
+      if (dados_fila_2_j2.length < 3) opciones.push({ fila: fila2_jugador2_id, array: dados_fila_2_j2, casillas: casillas_fila_2_j2, contraria: dados_fila_2, casillasContraria: casillas_fila_2 });
+      if (dados_fila_3_j2.length < 3) opciones.push({ fila: fila3_jugador2_id, array: dados_fila_3_j2, casillas: casillas_fila_3_j2, contraria: dados_fila_3, casillasContraria: casillas_fila_3 });
+
+      if (opciones.length === 0) return; // Todas las filas llenas
+
+      // Elegir aleatoriamente una opción válida
+      let seleccion = opciones[Math.floor(Math.random() * opciones.length)];
+      
+      // Colocar dado
+      for (let i = 0; i < 3; i++) {
+        if (seleccion.casillas[i].style.backgroundImage === "") {
+          seleccion.casillas[i].style.backgroundImage = aux;
+          seleccion.array.push(valorDado);
+          break;
+        }
+      }
+
+      contenedorImagen.style.backgroundImage = "";
+      turnoJugador = true;
+      cambiarColorCirculo();
+      eliminarDado(seleccion.contraria, seleccion.array, seleccion.casillasContraria);
+      actualizarTodasLasPuntuaciones();
+      dadoTirado = false;
+    }, 800); // Esperar 0.8s antes de colocar
+  }, 800); // Esperar 0.8s antes de lanzar
+}

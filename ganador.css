@@ -4,7 +4,7 @@ body{
     background-size: cover;
 
     margin-left: 28%;
-    margin-top: 19%;
+    margin-top: 16%;
     font-size: 80px;
     color: white;
     font-family: 'Comfortaa';
@@ -31,6 +31,6 @@ body{
 }
 /*transicion del boton*/
 .boton1:hover {
-    color: rgb(0, 247, 25);
-    background-color: rgb(255, 10, 226);
+    color: white;
+    background-color: #79533ab0;
 }

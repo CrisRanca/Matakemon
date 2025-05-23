@@ -85,13 +85,13 @@ contenedorImagen.addEventListener("click", () => {
   if (dadoTirado) return alert("Coloca el dado primero");
   //llamada a la función tirarDado
   tirarDado();
-  colocardadoaudio.play();
+  tirardadoaudio.play();
 });
 
 //Evento para colocar el dado el las casillas de la fila 1 del jugador 1
 fila1_id.addEventListener("click", function () {
   if (!turnoJugador) {
-    alert("No es tu turno");
+    erroraudio.play();
     return;
   }
 
@@ -101,6 +101,8 @@ fila1_id.addEventListener("click", function () {
   //condicional para que en el caso de colocar el dado haga:
   if (dadoTirado) {
     contenedorImagen.style.backgroundImage = "";
+
+    colocardadoaudio.play();
 
     //bucle para añadir al array de la fila 1 el valor del dado colocado
     for (let i = 2; i >= 0; i--) {
@@ -121,7 +123,7 @@ fila1_id.addEventListener("click", function () {
 //Evento para colocar el dado el las casillas de la fila 2 del jugador 1
 fila2_id.addEventListener("click", function () {
   if (!turnoJugador) {
-    alert("No es tu turno");
+    erroraudio.play();
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
@@ -130,6 +132,8 @@ fila2_id.addEventListener("click", function () {
   //condicional para que en el caso de colocar el dado haga:
   if (dadoTirado) {
     contenedorImagen.style.backgroundImage = "";
+
+    colocardadoaudio.play();
     //bucle para añadir al array de la fila 2 el valor del dado colocado
     for (let i = 2; i >= 0; i--) {
       if (casillas_fila_2[i].style.backgroundImage === "") {
@@ -149,7 +153,7 @@ fila2_id.addEventListener("click", function () {
 //Evento para colocar el dado el las casillas de la fila 3 del jugador 1
 fila3_id.addEventListener("click", function () {
   if (!turnoJugador) {
-    alert("No es tu turno");
+    erroraudio.play();
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
@@ -159,6 +163,7 @@ fila3_id.addEventListener("click", function () {
   if (dadoTirado) {
     contenedorImagen.style.backgroundImage = "";
 
+    colocardadoaudio.play();
     //bucle para añadir al array de la fila 3 el valor del dado colocado
     for (let i = 2; i >= 0; i--) {
       if (casillas_fila_3[i].style.backgroundImage === "") {
@@ -236,7 +241,7 @@ function resultadofinal_jugador2() {
 //Evento para colocar el dado el las casillas de la fila 1 del jugador 2
 fila1_jugador2_id.addEventListener("click", function () {
   if (turnoJugador) {
-    alert("No es tu turno");
+    erroraudio.play();
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
@@ -246,6 +251,7 @@ fila1_jugador2_id.addEventListener("click", function () {
   if (dadoTirado) {
     contenedorImagen.style.backgroundImage = "";
 
+    colocardadoaudio.play();
     //bucle para añadir al array de la fila 1 el valor del dado colocado
     for (let i = 0; i < 3; i++) {
       if (casillas_fila_1_j2[i].style.backgroundImage === "") {
@@ -265,7 +271,7 @@ fila1_jugador2_id.addEventListener("click", function () {
 //Evento para colocar el dado el las casillas de la fila 2 del jugador 2
 fila2_jugador2_id.addEventListener("click", function () {
   if (turnoJugador) {
-    alert("No es tu turno");
+    erroraudio.play();
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
@@ -274,6 +280,8 @@ fila2_jugador2_id.addEventListener("click", function () {
   //condicional para que en el caso de colocar el dado haga:
   if (dadoTirado) {
     contenedorImagen.style.backgroundImage = "";
+
+    colocardadoaudio.play();
     //bucle para añadir al array de la fila 2 el valor del dado colocado
     for (let i = 0; i < 3; i++) {
       if (casillas_fila_2_j2[i].style.backgroundImage === "") {
@@ -293,7 +301,7 @@ fila2_jugador2_id.addEventListener("click", function () {
 //Evento para colocar el dado el las casillas de la fila 3 del jugador 2
 fila3_jugador2_id.addEventListener("click", function () {
   if (turnoJugador) {
-    alert("No es tu turno");
+    erroraudio.play();
     return;
   }
   //condicional para no poder volver a tirar el dado si la fila esta llena
@@ -303,6 +311,7 @@ fila3_jugador2_id.addEventListener("click", function () {
   if (dadoTirado) {
     contenedorImagen.style.backgroundImage = "";
 
+    colocardadoaudio.play();
     //bucle para añadir al array de la fila 3 el valor del dado colocado
     for (let i = 0; i < 3; i++) {
       if (casillas_fila_3_j2[i].style.backgroundImage === "") {
@@ -327,11 +336,11 @@ let circuloJ2 = document.getElementById("circulo_jugador2");
 // Cambiar el color del circulo dependiendo de quien sea el turno
 function cambiarColorCirculo() {
   if (turnoJugador) {
-    circuloJ1.style.backgroundColor = "green";
+    circuloJ1.style.backgroundColor = "rgb(197, 255, 195)";
     circuloJ2.style.backgroundColor = "white";
   } else {
     circuloJ1.style.backgroundColor = "white";
-    circuloJ2.style.backgroundColor = "green";
+    circuloJ2.style.backgroundColor = "rgb(197, 255, 195)";
   }
 }
 
@@ -394,17 +403,25 @@ function actualizarTodasLasPuntuaciones() {
     dados_fila_1_j2.length + dados_fila_2_j2.length + dados_fila_3_j2.length === 9
   ) {
     verificarGanador();
-  } 
+  }
 }
 
 
 //FUNCION PARA VERIFICAR AL GANADOR
 function verificarGanador() {
   if (total_filas_sumadas > total_filas_sumadas_j2) {
-    localStorage.setItem("ganador", "Jugador 1", total_filas_sumadas);
-    
+    localStorage.setItem("ganador", "Jugador 1");
+    // Cuando el usuario termina el test
+    localStorage.setItem("score", total_filas_sumadas);
+
+// Opcional: redireccionar a la página de resultados
+    window.location.href = "ganador.html";
   } else if (total_filas_sumadas < total_filas_sumadas_j2) {
-    localStorage.setItem("ganador", "Jugador 2", total_filas_sumadas_j2);
+    localStorage.setItem("ganador", "Jugador 2");
+    localStorage.setItem("score", total_filas_sumadas_j2);
+
+// Opcional: redireccionar a la página de resultados
+    window.location.href = "ganador.html";
   } else {
     localStorage.setItem("ganador", "Empate");
   }
@@ -431,7 +448,6 @@ let poke8 = localStorage.getItem("PokemonJ8");
 //cambiar fondo dependiendo del pokemon por localStorage
 //OPTIMIZAR SI HAY TIEMPO
 if (poke1 == "P1") {
-
   if (poke2 == "P2") {
     cambiarFondo("imagenes/FondoP1P2.png");
   }else if (poke3 == "P3") {
@@ -448,8 +464,7 @@ if (poke1 == "P1") {
     cambiarFondo("imagenes/FondoP1P8.png");
   }else{
     cambiarFondo("imagenes/FondoP1.png");
-  }  
-  pokemonElegidoJ1("imagenes/pokemon1.png");
+  }
 }else if(poke2=="P2"){
   if (poke1 == "P1") {
     cambiarFondo("imagenes/FondoP1P2.png");
@@ -586,13 +601,7 @@ function cambiarFondo(url) {
   document.body.style.backgroundPosition = "center";
 }
 
-function pokemonElegidoJ1(url){
-  document.pokemonJ1.style.backgroundImage = `url(${url})`;
-  document.body,style.backgroundSize="contain"
-  document.body.style.backgroundRepeat = "no-repeat";
-  document.body.style.backgroundPosition = "left";
-}
 
 let tirardadoaudio=new Audio('./audio/tirar.mp3');
 let colocardadoaudio = new Audio('./audio/colocar.mp3');
-
+let erroraudio = new Audio ('./audio/error.mp3');

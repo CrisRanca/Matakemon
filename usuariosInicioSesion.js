@@ -7,3 +7,11 @@ enviarIniciarSesion.addEventListener("click", function () {
     let jugador = JSON.parse(usuarioJSON);
     console.log(jugador);
 });
+
+//condicional para solo acceder si tienes cuenta
+if (email === "" || password === "") {
+alert("Por favor, completa todos los campos.");
+return;
+}else{
+    enviarIniciarSesion.innerHTML= `<a href="pokemons.html"><button class="boton1" id="boton2" type="submit">Enviar</button></a>`
+}

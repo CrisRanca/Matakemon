@@ -20,18 +20,11 @@
 <script>
     const ganador = localStorage.getItem("ganador");
     const mensaje = document.getElementById("mensaje-ganador");
-    const puntos=localStorage.getItem(total_filas_sumadas)
-    const puntosj2=localStorage.getItem(total_filas_sumadas)
+    const puntuacion = localStorage.getItem("score");
 
     if (ganador === "Jugador 1" || ganador === "Jugador 2") {
-      mensaje.innerHTML = `Ganador: ${ganador}`;
-
-      if(ganador==="Jugador 1"){
-        puntos.innerHTML=`Puntuación: ${puntos}`
-      }else{
-        puntosj2.innerHTML=`Puntuación: ${puntosj2}`;
-      }
-    
+      mensaje.innerHTML = `Ganador: ${ganador}<br>con  puntuación: ${puntuacion}`;
+  
     }else if(ganador==="Empate"){
         mensaje.innerHTML = "Empate";
     }

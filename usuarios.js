@@ -15,3 +15,12 @@ enviarRegistrarse.addEventListener("click", function () {
     //Guardamos en el LocalStorage
     localStorage.setItem("usuario", usuarioJSON);
 });
+
+
+//condicional para solo acceder si tienes cuenta
+if (email === "" || password === "") {
+alert("Por favor, completa todos los campos.");
+return;
+}else{
+    `<`
+}
